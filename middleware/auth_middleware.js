@@ -30,11 +30,18 @@ class AuthMiddleware{
     static check_refresh_token = (req, res, next) => {
         try{
             const { refresh_token } = req.body
-            if(refresh_token){
-                jwt.verify(refresh_token, config.secret_key_refresh)
+            if(!refresh_token){
+                 return res.status(404).json()
             }
+            jwt.verify(refresh_token, config.secret_key_refresh)
+            next()
         }catch(e){
-
+           if (e.name === 'TokenExpiredError') {
+                res.status(404).json()
+            }else{
+                logger.error(e)
+                res.status(404).json()
+            }
         }
     }
 }
