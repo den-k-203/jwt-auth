@@ -53,6 +53,19 @@ class UserRequests{
             logger.error("The user was not removed from the database. Error:", e)
         }
     }
+
+    static updateUser = async (userEdit) => {
+        try{
+            const user = await User.findByPk(userEdit.id)
+            if(user){
+                await user.update(userEdit)
+                return user.toJSON()
+            }
+            return null
+        }catch(e){
+            logger.error("The user was not retrieved from the database. Error:", e)
+        }
+    }
 }
 
 module.exports = UserRequests

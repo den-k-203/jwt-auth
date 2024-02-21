@@ -29,7 +29,7 @@ const User = sequelize.define("users", {
         allowNull: false
     },
     refresh_token: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(4096),
         allowNull: false
     }
 })
