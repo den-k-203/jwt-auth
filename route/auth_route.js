@@ -6,6 +6,6 @@ const route = express.Router()
 route.post("/registration", AuthController.registration)
 route.post('/login', AuthController.login)
 route.get('/users', AuthMiddleware.check_access_token, AuthController.getUsers)
-route.post('/refresh', AuthMiddleware.check_refresh_token)
+route.post('/refresh', AuthMiddleware.check_refresh_token, AuthController.refreshToken)
 module.exports = route
 

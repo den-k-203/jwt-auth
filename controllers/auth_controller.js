@@ -53,7 +53,7 @@ class AuthController{
             
             res.cookie("RefreshToken", refresh_token)
             res.setHeader('Authorization', `Bearer ${access_token}`);
-            return res.status().json()
+            return res.json(refresh_token)
         }catch(e){
             if(e == "TokenExpiredError"){
                 logger.warn(e)
